@@ -9,7 +9,6 @@ public class UserRegistration {
     //UC1: User need to input valid first name
     //The first name starts with capital letter and has minimum three characters
     public void checkUserFirstName() {
-
         System.out.print("Enter your First Name: ");
         String firstname = scanner.next();
         UserDetails userDetails = new UserDetails(firstname);
@@ -25,11 +24,32 @@ public class UserRegistration {
         if(isFirstName)
             System.out.println(userDetails.firstName + " is a valid First Name.");
         else
-            System.err.println("Please enter a valid First Name.");
+            System.err.println("Please enter a valid First Name.\n");
+    }
+
+    //UC2: User need to input valid last name
+    public void checkUserLastName() {
+        System.out.print("\nEnter your Last Name: ");
+        String lastName = scanner.next();
+        UserDetails userDetails = new UserDetails(lastName);
+
+        //The Pattern class is used to define a pattern for the regex engine.
+        Pattern pattern = Pattern.compile("[A-Z][a-z]{2,}");
+
+        // The Matcher class is used to perform match operations on a character sequence.
+        Matcher matcher = pattern.matcher(userDetails.firstName);
+
+        //the matches() method tries to match the whole string against the pattern.
+        boolean isFirstName =  matcher.matches();
+        if(isFirstName)
+            System.out.println("It is a valid Last Name.");
+        else
+            System.err.println("Please enter a valid Last Name.\n");
     }
     public static void main(String[] args) {
         System.out.println("---------- User Registration ----------");
         UserRegistration userRegistration = new UserRegistration();
         userRegistration.checkUserFirstName();
+        userRegistration.checkUserLastName();
     }
 }
