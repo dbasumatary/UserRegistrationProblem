@@ -3,18 +3,32 @@ package com.userregistration;
 public class UserDetails {
     String firstName;
     String lastName;
+    String emailAddress;
 
     // default constructor
     public UserDetails(){}
 
-    //Constructor with one argument
-    public UserDetails(String firstName){
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    //Constructor with two arguments
-    public UserDetails(String firstName,String lastName){
-        this.firstName = firstName;
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 }
