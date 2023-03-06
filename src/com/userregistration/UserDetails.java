@@ -5,6 +5,7 @@ public class UserDetails {
     String lastName;
     String emailAddress;
     String mobileNumber;
+    String password;
 
     // default constructor
     public UserDetails(){}
@@ -39,5 +40,13 @@ public class UserDetails {
 
     public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

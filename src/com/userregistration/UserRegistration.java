@@ -58,6 +58,7 @@ public class UserRegistration {
         }
     }
 
+    //UC4: Valid Mobile No (country code followed by space and 10-digit number)
     public void checkValidMobileNumber(){
         System.out.print("Enter your mobile number: ");
         userDetails.setMobileNumber(scanner.nextLine());
@@ -73,9 +74,28 @@ public class UserRegistration {
             System.out.println(userDetails.mobileNumber + " is an invalid mobile number");
     }
 
+    //UC5: Valid Password (Minimum 8 characters required)
+    public void checkValidPassword(){
+        System.out.print("Enter your password: ");
+        userDetails.setPassword(scanner.nextLine());
+
+        Pattern patternObject = Pattern.compile("^([A-Za-z0-9]{8,})$");
+
+        Matcher matcherObject = patternObject.matcher(userDetails.getPassword());
+        boolean isPassword =  matcherObject.matches();
+
+        if(isPassword)
+            System.out.println(userDetails.password + " is a valid password\n");
+        else
+            System.out.println(userDetails.password + " is an invalid password");
+            if (userDetails.getPassword().length() < 8){
+                System.out.println("Password should not contain less than 8 characters!");
+            }
+    }
+
     public static void main(String[] args) {
         System.out.println("---------- User Registration ----------");
         UserRegistration userRegistration = new UserRegistration();
-        userRegistration.checkValidMobileNumber();
+        userRegistration.checkValidPassword();
     }
 }
