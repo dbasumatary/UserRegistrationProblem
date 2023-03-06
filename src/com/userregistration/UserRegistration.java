@@ -74,18 +74,19 @@ public class UserRegistration {
             System.out.println(userDetails.mobileNumber + " is an invalid mobile number");
     }
 
-    //UC7: Valid Password (At least 1 numeric number)
+    //UC8: Valid Password (Exactly 1 special character)
     public void checkValidPassword(){
         System.out.print("Enter your password: ");
 
         //Setting the input as password
         userDetails.setPassword(scanner.nextLine());
 
-        //The Pattern class is used to define a pattern for the regex engine.
-        Pattern patternObject = Pattern.compile("^((?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9]{8,})$");
+        //The Pattern class is used to define a pattern for the regex engine. Look up
+        Pattern pattern = Pattern.compile("^((?=.*[A-Z])(?=.*[0-9])(?=[^!@#$%&]*[!@#$%&][^!@#$%&]*$)[A-Za-z0-9!@#$%&]{8,})$");
+        //Pattern pattern = Pattern.compile("^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$");
 
         // The Matcher class is used to perform match operations on a character sequence.
-        Matcher matcherObject = patternObject.matcher(userDetails.getPassword());
+        Matcher matcherObject = pattern.matcher(userDetails.getPassword());
 
         //the matches() method tries to match the whole string against the pattern.
         boolean isPassword =  matcherObject.matches();
@@ -96,8 +97,9 @@ public class UserRegistration {
         else {
             System.out.println(userDetails.password + " is an invalid password\n");
             System.out.println("Password should not contain less than 8 characters");
-            System.out.println("Password should not contain at least one upper case");
-            System.out.println("Password should not contain at least one number");
+            System.out.println("Password should contain at least one upper case");
+            System.out.println("Password should contain at least one number");
+            System.out.println("Password should contain exactly one special character");
         }
     }
 
