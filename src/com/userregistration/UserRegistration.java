@@ -74,23 +74,23 @@ public class UserRegistration {
             System.out.println(userDetails.mobileNumber + " is an invalid mobile number");
     }
 
-    //UC5: Valid Password (Minimum 8 characters required)
+    //UC6: Valid Password (At least 1 upper case required)
     public void checkValidPassword(){
         System.out.print("Enter your password: ");
         userDetails.setPassword(scanner.nextLine());
 
-        Pattern patternObject = Pattern.compile("^([A-Za-z0-9]{8,})$");
-
+        Pattern patternObject = Pattern.compile("^((?=.*[A-Z])[A-Za-z0-9]{8,})$");
         Matcher matcherObject = patternObject.matcher(userDetails.getPassword());
         boolean isPassword =  matcherObject.matches();
 
-        if(isPassword)
-            System.out.println(userDetails.password + " is a valid password\n");
-        else
-            System.out.println(userDetails.password + " is an invalid password");
-            if (userDetails.getPassword().length() < 8){
-                System.out.println("Password should not contain less than 8 characters!");
-            }
+        if(isPassword) {
+            System.out.println(userDetails.password + " is a valid password");
+        }
+        else {
+            System.out.println(userDetails.password + " is an invalid password\n");
+            System.out.println("Password should not contain less than 8 characters!");
+            System.out.println("Password should not contain at least one upper case!");
+        }
     }
 
     public static void main(String[] args) {
