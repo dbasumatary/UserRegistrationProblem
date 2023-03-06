@@ -4,6 +4,7 @@ public class UserDetails {
     String firstName;
     String lastName;
     String emailAddress;
+    String mobileNumber;
 
     // default constructor
     public UserDetails(){}
@@ -30,5 +31,13 @@ public class UserDetails {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 }

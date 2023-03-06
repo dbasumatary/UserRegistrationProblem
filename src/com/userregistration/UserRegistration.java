@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 public class UserRegistration {
     public Scanner scanner = new Scanner(System.in);
+    UserDetails userDetails = new UserDetails();
 
     // User need to input valid first name and last name
     public void checkUserName() {
@@ -37,12 +38,11 @@ public class UserRegistration {
 
     //UC3: User need to input valid email address
     public void checkEmailAddress(){
-        UserDetails userDetails = new UserDetails();
         System.out.println("Enter your email address: ");
         userDetails.setEmailAddress(scanner.nextLine());
 
         //The Pattern class is used to define a pattern for the regex engine.
-        Pattern pattern = Pattern.compile("^(?=.{3,20}@)[a-zA-Z]+[A-Za-z0-9]+[- + . _]?[a-zA-Z0-9]+.@[^-_.][a-zA-Z0-9-]+(\\.[a-z]+)(\\.[a-z]+)*$");
+        Pattern pattern = Pattern.compile("^(?=.{3,20}@)[a-zA-Z]+[A-Za-z0-9]+[- + . _]?[a-zA-Z0-9]+.@[^-_.][a-zA-Z0-9]+(\\.[a-z]+)(\\.[a-z]+)*$");
 
         // The Matcher class is used to perform match operations on a character sequence.
         Matcher matcher = pattern.matcher(userDetails.getEmailAddress());
@@ -58,9 +58,24 @@ public class UserRegistration {
         }
     }
 
+    public void checkValidMobileNumber(){
+        System.out.print("Enter your mobile number: ");
+        userDetails.setMobileNumber(scanner.nextLine());
+
+        Pattern pattern = Pattern.compile("^[+][0-9]{2}\\s[0-9]{10}$");
+
+        Matcher matcherObject = pattern.matcher(userDetails.getMobileNumber());
+        boolean isMobileNumber =  matcherObject.matches();
+
+        if(isMobileNumber)
+            System.out.println(userDetails.mobileNumber + " is a valid  mobile number\n");
+        else
+            System.out.println(userDetails.mobileNumber + " is an invalid mobile number");
+    }
+
     public static void main(String[] args) {
         System.out.println("---------- User Registration ----------");
         UserRegistration userRegistration = new UserRegistration();
-        userRegistration.checkEmailAddress();
+        userRegistration.checkValidMobileNumber();
     }
 }
